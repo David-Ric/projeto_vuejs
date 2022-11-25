@@ -1,17 +1,18 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import VuexPersistence from 'vuex-persist'
+
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
-  state: {
+const store = new Vuex.Store({
+  state:{
+    jwt: 0
   },
-  getters: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
+  mutations:{
+    setJwt(state, payload){
+      state.jwt = payload
+    }
   }
 })
+export default store
