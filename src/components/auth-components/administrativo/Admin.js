@@ -37,8 +37,11 @@ export default {
       }
     },
     async getUsuario() {
+      let token = localStorage.getItem('jwt');
+      let header = { 'Authorization': 'Bearer' +' '+ token };
+      console.log (header)
       try {
-        const response = await Api().get('admin/users');
+        const response = await Api().get('admin/users',{headers: header});
         this.clientes = response.data 
       } catch (error) {
        // console.log('resposta',response.data)
@@ -50,8 +53,10 @@ export default {
       }
     },
     async submiteditUser(editId,nivel) {
+      let token = localStorage.getItem('jwt');
+      let header = { 'Authorization': 'Bearer' +' '+ token };
        try {
-         const response = await Api().put(`admin/users/${editId}`,nivel);
+         const response = await Api().put(`admin/users/${editId}`,nivel,{headers: header});
          this.getUsuario()
          swal({
           title: 'Huhulll!',
@@ -64,8 +69,10 @@ export default {
     },
 
     async submitdeletUser(id) {
+      let token = localStorage.getItem('jwt');
+      let header = { 'Authorization': 'Bearer' +' '+ token };
       try {
-        const response = await Api().delete(`admin/users/${id}`);
+        const response = await Api().delete(`admin/users/${id}`,{headers: header});
         this.getUsuario()
         swal({
           title: 'Huhulll!',
